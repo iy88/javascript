@@ -392,10 +392,11 @@ onmessage = event =>{
   let sortfunc = [bipartiteInsertionSort,bubbleSort,bucketSort,countingSort,heapSort,insertionSort,mergeSort,quickSort,radixSort,selectionSort,shellSort];
   let func = event.data[1];
   let arr = event.data[0][0];
-  let time = new Date().getTime();
+  let time = performance.now()
   let result = sortfunc[func](arr);
-  let timeEnd = new Date().getTime();
+  let timeEnd = performance.now();
   let cost = timeEnd-time;
+  console.log(cost);
   postMessage([result,cost])
   close()
 }

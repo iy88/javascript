@@ -4,7 +4,6 @@
     <title>sort algorithm</title>
 </head>
 <body>
-    <script src="allsortfunc.js"></script> 
     length:<input type="number" onblur='javascript:if(Number(this.value) >= 0 && Number(this.value) <= 100000000) length = Number(this.value); else this.value = 0'>
     <input type="button" value="Generated random array" onclick="randomarr()">
     sortfunc:<select title="sort-function" onchange="javascript:sortfunctype = Number(this.value)">
@@ -51,7 +50,7 @@
                     document.getElementById('output').value = sortedarr;
                 }
             }else{
-                alert('please create the random array frist')
+                alert('please create the random array frist');
             }
         }
 
