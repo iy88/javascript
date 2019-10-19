@@ -1,2 +1,2 @@
 # javascript
-algotithm/data
+algotithm/data/ES6
