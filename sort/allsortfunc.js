@@ -396,7 +396,6 @@ onmessage = event =>{
   let result = sortfunc[func](arr);
   let timeEnd = performance.now();
   let cost = timeEnd-time;
-  console.log(cost);
   postMessage([result,cost])
   close()
 }

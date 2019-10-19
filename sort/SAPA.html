@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>SortAlgorithmPerformanceAnalysis</title>
+</head>
+
+<body>
+    length:<input type="number" value=2 id="length"
+        onblur='javascript: if(Math.floor(Number(this.value)) >= 2 && Math.floor(Number(this.value)) <= 100000000) length = Math.floor(Number(this.value)); else this.value = 2;'>
+    sortfunc:<select title="sort-function" onchange="javascript:sortfunctype = Number(this.value)">
+        <option value=0 selected>bipartiteInsertionSort</option>
+        <option value=1>bubbleSort</option>
+        <option value=2>bucketSort</option>
+        <option value=3>countingSort</option>
+        <option value=4>heapSort</option>
+        <option value=5>insertionSort</option>
+        <option value=6>mergeSort</option>
+        <option value=7>quickSort</option>
+        <option value=8>radixSort</option>
+        <option value=9>selectionSort</option>
+        <option value=10>shellSort</option>
+    </select>
+    operation times:<input type="number" value=2
+        onblur='javascript:if(Math.floor(Number(this.value)) >= 2) maxcount = Math.floor(Number(this.value)); else this.value = 2'>
+    <input type="button" value="test run" onclick="test()"><input type="button" value="averaging"
+        onclick="averagingrun()"><br>
+    <table>
+        <tr>
+            <th>run time list:</th>
+            <th>average value:</th>
+        </tr>
+        <tr>
+            <td><textarea id="run_time" style="display: block;width: 199px; height: 407px;"></textarea></td>
+            <td id="average_value"></td>
+        </tr>
+    </table>
+    <script>
+        let sortfunctype = 0;
+        let length = 2;
+        let times = [];
+        let time;
+        let maxcount = 2;
+        function t() {
+            let worker = new Worker('testrunsort.js')
+            worker.postMessage([sortfunctype, length]);
+            worker.onmessage = (event) => {
+                time = event.data;
+                times[times.length] = time;
+                document.getElementById('run_time').value += `${time}ms
+                `;
+            }
+        }
+        function test() {
+            let count = 0;
+            times = [];
+            document.getElementById('run_time').value = "";
+            document.getElementById('average_value').value = "";
+            let i = setInterval(() => {
+                if (!(count + 2 < maxcount)) {
+                    clearInterval(i);
+                }
+                t();
+                count++;
+            });
+            let j = setInterval(() => {
+                if (!(count + 2 < maxcount)) {
+                    clearInterval(j);
+                }
+                t();
+                count++;
+            });
+        }
+        function averagingrun() {
+            if (times.length == maxcount) {
+                let worker = new Worker('averaging.js');
+                let averageValue = 0;
+                worker.postMessage(times);
+                worker.onmessage = (event) => {
+                    averageValue = event.data;
+                    document.getElementById('average_value').innerText = `${averageValue}ms`;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

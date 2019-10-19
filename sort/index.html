@@ -19,15 +19,17 @@
         <option value=9>selectionSort</option>
         <option value=10>shellSort</option>
     </select>
-    <input type="button" value="sort array" onclick="sortf()"><br>
+    <input type="button" value="sort array" onclick="sortf()"><input type="button" value="performance analysis" onclick="javascript:window.location.href='SAPA.html';"><br>
     <textarea id="input" style="display: none;margin: 0px 844px 0px 0px; width: 670px; height: 200px;"></textarea><br>
     <textarea id="output" style="display: none;margin: 0px 844px 0px 0px; width: 670px; height: 200px;"></textarea><br>
+    <textarea id="run_time" style="display: none; margin: 0px 1315px 0px 0px; width: 199px; height: 407px;"></textarea>
     <script>
         let sortfunctype = 0;
         let length = 2;
         let arr;
         let sortedarr;
         let time;
+        let times = [];
         function randomarr(){
             document.getElementById('input').style.display = 'block';
             document.getElementById('input').value = 'please wait for create array';
@@ -45,9 +47,13 @@
                 let sort = new Worker('allsortfunc.js');
                 sort.postMessage([arr,sortfunctype]);
                 sort.onmessage = event => {
-                    sortedarr = [event.data][0];
+                    sortedarr = event.data[0];
                     time = event.data[1];
+                    times[times.length] = time;
                     document.getElementById('output').value = sortedarr;
+                    document.getElementById('run_time').value+=`${time}ms
+                    `;
+                    document.getElementById('run_time').style.display = 'block';
                 }
             }else{
                 alert('please create the random array frist');
