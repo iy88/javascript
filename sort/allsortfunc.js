@@ -1,33 +1,3 @@
-
-function randomNumArray(length,type){
-    let arr = [];
-    if(type == 0){
-        for(let i = 0;i<length;i++){
-            arr[arr.length] = i;
-        }
-        arr.sort(randomsort)
-        return arr
-    }else if(type == 1){
-        for(let i = length-1;i>=0;i--){
-            arr[arr.length] = i;
-        }
-    }
-    function randomsort(a, b) {
-        return Math.random()>.5 ? -1 : 1;
-        //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
-    }
-    arr.sort(randomsort)
-    return arr
-}
-
-function getArgumentsToarray(arguments){
-  let arr = [];
-  for(let i = 0; i < arguments.length; i++){
-      arr[arr.length] = arguments[i];
-  }
-  return arr;
-}
-
 function  bipartiteInsertionSort(arr) {
     console.time('bipartiteInsertionSort run time');
     let array = arr.slice(0);
@@ -440,40 +410,10 @@ Array.prototype.searchelement = function(element,auto,begin_index,end_index){
   return indexs
 }
 
-const arr = randomNumArray(100,0);
-if(arr.length < 100){
-    console.log(`array: [${arr}]`);
-}else{
-    console.log(`array length:${arr.length}`);
+onmessage = event =>{
+  let sortfunc = [bipartiteInsertionSort,bubbleSort,bucketSort,countingSort,heapSort,insertionSort,mergeSort,quickSort,radixSort,selectionSort,shellSort];
+  let func = event.data[1];
+  let arr = event.data[0][0];
+  postMessage(sortfunc[func](arr));
+  close()
 }
-
-//console.log(
-//shellSort(arr)//,
-////arr,
-//heapSort(arr)//,
-////arr,
-//insertSort(arr)//,
-////arr,
-//bipartiteInsertionSort(arr)//,
-////arr,
-//bubbleSort(arr)//,
-////arr,
-//radixSort(arr)//,
-////arr,
-//mergeSort(arr)//,
-////arr,
-//quickSort(arr)//,
-////arr,
-//selectionSort(arr)//,
-////arr,
-//countingSort(arr)//,
-//arr,
-//);
-
-bubbleSort(arr);
-//shellSort(arr);
-//heapSort(arr);
-//radixSort(arr);
-//mergeSort(arr);
-//countingSort(arr);
-//bucketSort(arr)
