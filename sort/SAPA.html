@@ -24,7 +24,10 @@
     operation times:<input type="number" value=2
         onblur='javascript:if(Math.floor(Number(this.value)) >= 2) maxcount = Math.floor(Number(this.value)); else this.value = 2'>
     <input type="button" value="test run" onclick="test()"><input type="button" value="averaging"
-        onclick="averagingrun()"><input type="button" value="sort array" onclick="javascript:window.location.href='index.html'"><br>
+        onclick="averagingrun()"><input type="button" value="sort array"
+        onclick="javascript:window.location.href='index.html'">
+    operation progress:<progress id="p" value=0 max=1></progress>
+    <br>
     <table>
         <tr>
             <th>run time list:</th>
@@ -35,6 +38,15 @@
             <td id="average_value"></td>
         </tr>
     </table>
+    <style>
+        #p::-moz-progress-bar {
+            background: rgb(0, 255, 85);
+        }
+
+        ::-webkit-progress-bar {
+            background: rgb(0, 245, 73);
+        }
+    </style>
     <script>
         let sortfunctype = 0;
         let length = 2;
@@ -52,24 +64,34 @@
             }
         }
         function test() {
-            let count = 0;
             times = [];
             document.getElementById('run_time').value = "";
             document.getElementById('average_value').value = "";
-            let i = setInterval(() => {
-                if (!(count + 2 < maxcount)) {
+            /*let i = setInterval(() => {
+                if (!(count+1 < maxcount)) {
                     clearInterval(i);
                 }
                 t();
                 count++;
-            });
-            let j = setInterval(() => {
-                if (!(count + 2 < maxcount)) {
-                    clearInterval(j);
+                document.getElementById('p').value = count / maxcount;
+            });*/
+            function createtester(num) {
+                let a = [],
+                    b = [];
+                for (let i = 0; i < num; i++) {
+                    b[i] = 0;
+                    a[i] = setInterval(() => {
+                        if (!(b[i] + num < maxcount)) {
+                            clearInterval(a[i])
+                        }
+                        t();
+                        b[i]++;
+                        document.getElementById('p').value = b[i] / maxcount;
+                        console.log(b[i]);
+                    })
                 }
-                t();
-                count++;
-            });
+            }
+            createtester(1);
         }
         function averagingrun() {
             if (times.length == maxcount) {
