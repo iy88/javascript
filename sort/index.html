@@ -4,7 +4,7 @@
     <title>sort algorithm</title>
 </head>
 <body>
-    length:<input type="number" onblur='javascript:if(Number(this.value) >= 0 && Number(this.value) <= 100000000) length = Number(this.value); else this.value = 0'>
+    length:<input type="number" value = 2 onblur='javascript:if(Number(this.value) >= 0 && Number(this.value) <= 100000000) length = Number(this.value); else this.value = 0'>
     <input type="button" value="Generated random array" onclick="randomarr()">
     sortfunc:<select title="sort-function" onchange="javascript:sortfunctype = Number(this.value)">
         <option value=0 selected>bipartiteInsertionSort</option>
