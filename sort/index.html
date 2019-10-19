@@ -28,6 +28,7 @@
         let length = 2;
         let arr;
         let sortedarr;
+        let time;
         function randomarr(){
             document.getElementById('input').style.display = 'block';
             document.getElementById('input').value = 'please wait for create array';
@@ -45,7 +46,8 @@
                 let sort = new Worker('allsortfunc.js');
                 sort.postMessage([arr,sortfunctype]);
                 sort.onmessage = event => {
-                    sortedarr = [event.data];
+                    sortedarr = [event.data][0];
+                    time = event.data[1];
                     document.getElementById('output').value = sortedarr;
                 }
             }else{

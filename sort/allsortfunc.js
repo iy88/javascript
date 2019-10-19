@@ -1,5 +1,4 @@
 function  bipartiteInsertionSort(arr) {
-    console.time('bipartiteInsertionSort run time');
     let array = arr.slice(0);
     if (array) {
       var len = array.length, i, j, tmp, low, high, mid, result;
@@ -24,14 +23,12 @@ function  bipartiteInsertionSort(arr) {
     else {
       console.error(`bipartiteInsertionSort: unkown array '${array}'`);
     }
-    console.timeEnd('bipartiteInsertionSort run time');
     return result;
 }
 
 function countingSort(array){
   let arr = array.slice(0);
   if(arr){
-    console.time('countingSort run time');  
       if(arr.length < 2){
           return arr
       }else{
@@ -59,7 +56,6 @@ function countingSort(array){
                   count--;
               }
           })
-          console.timeEnd('countingSort run time');
           return arr
       }
   }else{
@@ -68,7 +64,6 @@ function countingSort(array){
 }
 
 function bubbleSort(array){
-    console.time('bubbleSort run time');
     let arr = array.slice(0);
     if(arr){
         for(let count = 0;count < arr.length-1;count++){
@@ -88,12 +83,10 @@ function bubbleSort(array){
     }else{
         console.error(`bubbleSort: unkown array '${arr}'`);
     }
-    console.timeEnd('bubbleSort run time');
     return arr
 }
 
 function heapSort(array) {
-    console.time('heapSort run time');
     var result = array.slice(0);
     if (result) {
       function swap(array, i, j) {
@@ -141,12 +134,10 @@ function heapSort(array) {
     else {
       console.error(`heapSort: unkown array ${result}`);
     }
-    console.timeEnd('heapSort run time');
     return sort(result);
 }
 
 function insertionSort(array) {
-    console.time('insertionSort run time');
     let arr = array.slice(0);
     if (arr) {
       for (var i = 1; i < arr.length; i++) {
@@ -162,12 +153,10 @@ function insertionSort(array) {
     else {
       console.error(`insertionSort: unkown array '${arr}'`);
     }
-    console.timeEnd("insertionSort run time");
     return arr;
 }
 
 function mergeSort(array) {
-    console.time('mergeSort run time');
     var result = array.slice(0);
     if (result) {
       function sort(array) {
@@ -202,12 +191,10 @@ function mergeSort(array) {
     else {
       console.error(`mergeSort: unkown array '${result}'`);
     }
-    console.timeEnd('mergeSort run time');
     return sort(result);
 }
   
 function quickSort(array) {
-    console.time('quickSort run time');
     let arr = array.slice(0);
     if (arr) {
         for (var i = 0; i < arr.length; i++) {
@@ -223,12 +210,10 @@ function quickSort(array) {
     else {
         console.error(`quickSort: unkown array '${arr}'`);
     }
-    console.timeEnd('quickSort run time');
     return arr;
 }
 
 function radixSort(array){
-    console.time("radixSort run time");
     let arr = array.slice(0);
     if(arr){
       var len = arr.length;
@@ -255,12 +240,10 @@ function radixSort(array){
     }else{
       console.error(`radixSort: unkown array '${arr}'`);
     }
-    console.timeEnd('radixSort run time');
     return arr;
 }
 
 function selectionSort(arr) {
-    console.time('selectionSort run time');
     var array = arr.slice(0);
     if (array) {
       var len = array.length, i, j, k, tmp, result;
@@ -281,12 +264,10 @@ function selectionSort(arr) {
     else {
       console.error(`selectionSort: unknow array '${array}'`);
     }
-    console.timeEnd('selectionSort run time');
     return result;
 }
 
 function shellSort(array) {
-    console.time('shellSort run time');
     let arr = array.slice(0);
     if(arr){
         let len = arr.length;
@@ -304,7 +285,6 @@ function shellSort(array) {
     }else{
         console.error(`shellSort: unkown array '${arr}'`);
     }
-    console.timeEnd('shellSort run time');
     return arr
 }
 
@@ -333,7 +313,6 @@ function bucketSort(array){
                   bucketsize = sameelement + notsameelement;
               }
           }
-          console.time(`bucketSort run time`);
           function createBuckets(array,bucketSize){
               let minValue = array[0];
               let maxValue = array[0];
@@ -379,7 +358,6 @@ function bucketSort(array){
           }
           //autosize(arr);
           const buckets = createBuckets(arr,bucketsize);
-          console.timeEnd('bucketSort run time');
           return sortBuckets(buckets)
       }else{
           return arr
@@ -414,6 +392,10 @@ onmessage = event =>{
   let sortfunc = [bipartiteInsertionSort,bubbleSort,bucketSort,countingSort,heapSort,insertionSort,mergeSort,quickSort,radixSort,selectionSort,shellSort];
   let func = event.data[1];
   let arr = event.data[0][0];
-  postMessage(sortfunc[func](arr));
+  let time = new Date().getTime();
+  let result = sortfunc[func](arr);
+  let timeEnd = new Date().getTime();
+  let cost = timeEnd-time;
+  postMessage([result,cost])
   close()
 }
