@@ -2,7 +2,7 @@
 layout: default
 ---
 
-This web page about algorithm and Data structures(such as: _**Stack**_|_**bubbleSort**_|_**radixSort**_...).
+This web page about algorithm and Data structures(such as: _**Stack**_,_**bubbleSort**_,_**radixSort**_...).
 
 [sort algorithm](https://iy88.github.io/javascript/sort "sort algorithm")
 
