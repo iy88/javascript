@@ -6,7 +6,7 @@ This web page about algorithm and Data structures(such as: _**Stack**_,_**bubble
 
 [sort algorithm](sort "sort algorithm")
 
-[test](index2.html)
+
 
 # bubbleSort:
 
@@ -35,7 +35,7 @@ function bubbleSort(array){
 }
 ```
 
-## radixSort:
+# radixSort:
 
 ```js
 function radixSort(array){
@@ -67,41 +67,37 @@ function radixSort(array){
     return arr;
 }
 ```
-_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort)
-### Header 3
+_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort) [sort algorithm (code)](sort/code.html)
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+# run time list 
+(_**Just for my algorithm! and my computer! If you want to calculate the run time yourself, you can visit =>**_[test sort algorithm run time](sort/SAPA.html)
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+**length:1000**:
+|  sort algorithm  | run time |
+|------------------|:---------|
+|bubble            |11.066ms  |
+|bipartitelnsertion|6.255ms   |
+|bucketSort        |1.127ms   |
+|counting          |0.623ms   |
+|heap              |4.429ms   |
+|insertion         |4.754ms   |
+|merge             |5.764ms   |
+|quick             |5.261ms   |
+|radix             |1.645ms   |
+|selection         |5.083ms   |
+|shell             |5.785ms   |
 
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
+**length:10000**:
+|  sort algorithm  | run time |
+|------------------|:---------|
+|bubble            |1017.191ms|
+|bipartitelnsertion|80.623ms  |
+|bucketSort        |12.458ms  |
+|counting          |5.910ms   |
+|heap              |13.985ms  |
+|insertion         |76.564ms  |
+|merge             |47.726ms  |
+|quick             |465.000ms |
+|radix             |29.969ms  |
+|selection         |237.993ms |
+|shell             |15.841ms  |
