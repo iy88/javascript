@@ -31,38 +31,6 @@ function bubbleSort(array){
 }
 ```
 
-# radixSort:
-
-```js
-function radixSort(array){
-    let arr = array.slice(0);
-    if(arr){
-      var len = arr.length;
-      var bullet= [];
-      var k=1, temp;
-      for (var i = 0; i < 10; i++)
-        bullet[i] = [];
-      while (true){
-        var num = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
-        for (var i = 0; i < len; i++){
-          temp = Math.floor(arr[i] / k) % 10;
-          bullet[temp][num[temp]++] = arr[i];
-        }
-        if (num[0] == len) break;
-        for (var i = 0; i < len; i++){
-          for (var j = 0; j < 10; j++){
-            for (var r = 0; r < num[j]; r++)
-              arr[i++] = bullet[j][r];
-          }
-        }
-        k *= 10;
-      }
-    }else{
-      console.error(`radixSort: unkown array '${arr}'`);
-    }
-    return arr;
-}
-```
 _If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort)/[sort algorithm (code)](sort/code.html)
 
 # run time list 
