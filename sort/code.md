@@ -393,4 +393,4 @@ Array.prototype.searchelement = function(element,auto,begin_index,end_index){
 
 _**The algorithm will update from time to time**_
 
-If you find any bug, please email at <font color="rgb(34, 111, 255)">1845767798@qq.com</font>
+If you find any bug, please email at _**1845767798@qq.com**_
