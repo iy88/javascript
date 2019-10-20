@@ -4,7 +4,8 @@ layout: default
 
 This web page about algorithm and Data structures(such as: _**Stack**_,_**bubbleSort**_,_**radixSort**_...).
 
-[sort algorithm](https://iy88.github.io/javascript/sort "sort algorithm")
+[sort algorithm](sort "sort algorithm")
+[test](index2.html)
 
 # bubbleSort:
 
@@ -65,7 +66,7 @@ function radixSort(array){
     return arr;
 }
 ```
-_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm]("sort/sort.html")
+_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort/sort.html)
 ### Header 3
 
 ```js
