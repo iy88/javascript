@@ -4,10 +4,6 @@ layout: default
 
 This web page about algorithm and Data structures(such as: _**Stack**_,_**bubbleSort**_,_**radixSort**_...).
 
-[sort algorithm](sort "sort algorithm")
-
-
-
 # bubbleSort:
 
 ```js
