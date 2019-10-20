@@ -2,24 +2,70 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+This web page about algorithm and Data structures(such as: _**Stack**_|_**bubbleSort**_|_**radixSort**_...).
 
-[Link to another page](./another-page.html).
+[sort algorithm](https://iy88.github.io/javascript/sort "sort algorithm")
 
-There should be whitespace between paragraphs.
+# bubbleSort:
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+```js
+function bubbleSort(array){
+    let arr = array.slice(0);
+    if(arr){
+        for(let count = 0;count < arr.length-1;count++){
+            let over = true;
+            for(let i = 0;i < arr.length;i++){
+                if(arr[i] > arr[i+1]){
+                    let temp = arr[i];
+                    arr[i] = arr[i+1];
+                    arr[i+1] = temp;
+                    over = false;
+                }
+            }
+            if(over){
+                break;
+            }
+        }
+    }else{
+        console.error(`bubbleSort: unkown array '${arr}'`);
+    }
+    return arr
+}
+```
 
-# Header 1
+## radixSort:
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
+```js
+function radixSort(array){
+    let arr = array.slice(0);
+    if(arr){
+      var len = arr.length;
+      var bullet= [];
+      var k=1, temp;
+      for (var i = 0; i < 10; i++)
+        bullet[i] = [];
+      while (true){
+        var num = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        for (var i = 0; i < len; i++){
+          temp = Math.floor(arr[i] / k) % 10;
+          bullet[temp][num[temp]++] = arr[i];
+        }
+        if (num[0] == len) break;
+        for (var i = 0; i < len; i++){
+          for (var j = 0; j < 10; j++){
+            for (var r = 0; r < num[j]; r++)
+              arr[i++] = bullet[j][r];
+          }
+        }
+        k *= 10;
+      }
+    }else{
+      console.error(`radixSort: unkown array '${arr}'`);
+    }
+    return arr;
+}
+```
+_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm]("sort/sort.html")
 ### Header 3
 
 ```js
