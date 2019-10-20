@@ -74,7 +74,7 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 
 **length:1000**:
 |  sort algorithm  | run time |
-|------------------|:---------|
+|:------------------|:---------|
 |bubble            |11.066ms  |
 |bipartitelnsertion|6.255ms   |
 |bucketSort        |1.127ms   |
@@ -89,7 +89,7 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 
 **length:10000**:
 |  sort algorithm  | run time |
-|------------------|:---------|
+|:------------------|:---------|
 |bubble            |1017.191ms|
 |bipartitelnsertion|80.623ms  |
 |bucketSort        |12.458ms  |
