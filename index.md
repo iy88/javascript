@@ -66,7 +66,7 @@ function radixSort(array){
     return arr;
 }
 ```
-_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort/sort.html)
+_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort)
 ### Header 3
 
 ```js
