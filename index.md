@@ -99,3 +99,22 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 |radix             |29.969ms  |
 |selection         |237.993ms |
 |shell             |15.841ms  |
+
+# Performance of sorting algorithm:
+
+|:-----------------|                     Time complexity                      |
+|:-----------------|:---------------------------------------------------------|
+|  sort algorithm  |    Best case    |   General situation   |   Worst case   |
+|:-----------------|:----------------|:----------------------|:---------------|
+|bubble            |       O(n)      |        O(n^2)         |     O(n^2)     |
+|bucketSort        |      O(n+k)     |        O(n+k)         |     O(n^2)     |
+|counting          |      O(n+k)     |        O(n+k)         |     O(n+k)     |
+|heap              |    O(nlog(n))   |      O(nlog(n))       |   O(nlog(n))   |
+|insertion         |      O(n)       |        O(n^2)         |     O(n^2)     |
+|merge             |    O(nlog(n))   |      O(nlog(n))       |   O(nlog(n))   |
+|quick             |    O(nlog(n))   |      O(nlog(n))       |     O(n^2)     |
+|radix             |      O(nk)      |         O(nk)         |     O(nk)      |
+|selection         |     O(n^2)      |        O(n^2)         |     O(n^2)     |
+|shell             |   O(nlog^2(n))  |     O(nlog^2(n))      |  O(nlog^2(n))  |
+
+_** data by <Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition> Loiane Groner **_
