@@ -102,7 +102,7 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 
 # Performance of sorting algorithm:
 
-|:-----------------|                     Time complexity                      |
+|                  |                     Time complexity                      |
 |:-----------------|:---------------------------------------------------------|
 |  sort algorithm  |    Best case    |   General situation   |   Worst case   |
 |:-----------------|:----------------|:----------------------|:---------------|
