@@ -117,4 +117,4 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 |selection         |     O(n^2)      |        O(n^2)         |     O(n^2)     |
 |shell             |   O(nlog^2(n))  |     O(nlog^2(n))      |  O(nlog^2(n))  |
 
-_** data by <Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition> Loiane Groner **_
+_** data by 《Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition》 Loiane Groner **_
