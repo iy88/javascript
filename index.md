@@ -63,7 +63,7 @@ function radixSort(array){
     return arr;
 }
 ```
-_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort) [sort algorithm (code)](sort/code.html)
+_If you want to learn more about sorting algorithms, you can visit =>_[sort algorithm](sort)/[sort algorithm (code)](sort/code.html)
 
 # run time list 
 (_**Just for my algorithm! and my computer! If you want to calculate the run time yourself, you can visit =>**_[test sort algorithm run time](sort/SAPA.html)
