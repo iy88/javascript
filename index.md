@@ -73,6 +73,7 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 (_**Just for my algorithm! and my computer! If you want to calculate the run time yourself, you can visit =>**_[test sort algorithm run time](sort/SAPA.html)
 
 **length:1000**:
+
 |  sort algorithm  | run time |
 |:-----------------|:---------|
 |bubble            |11.066ms  |
@@ -88,6 +89,7 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 |shell             |5.785ms   |
 
 **length:10000**:
+
 |  sort algorithm  | run time |
 |:-----------------|:---------|
 |bubble            |1017.191ms|
