@@ -420,5 +420,5 @@ onmessage = event => {
   let timeEnd = performance.now();
   let cost = timeEnd - time;
   postMessage(cost);
-  close();
+  self.close();
 }

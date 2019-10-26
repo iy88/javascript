@@ -23,7 +23,7 @@
     </select>
     operation times:<input type="number" value=2
         onblur='javascript:if(Math.floor(Number(this.value)) >= 2) maxcount = Math.floor(Number(this.value)); else this.value = 2'>
-    <input type="button" value="run" onclick="test()"><input type="button" value="averaging"
+    <input type="button" value="run" id="run" onclick="javascript:test();"><input type="button" value="averaging"
         onclick="averagingrun()"><input type="button" value="sort array"
         onclick="javascript:window.location.href='index.html'">
     operation progress:<progress id="p" value=0 max=1></progress><span id="progress" style="float: none;margin-left: -97px;"></span>
@@ -70,6 +70,7 @@
             times = [];
             document.getElementById('run_time').value = "";
             document.getElementById('average_value').value = "";
+            document.getElementById('run').disabled=true;
             /*let i = setInterval(() => {
                 if (!(count+1 < maxcount)) {
                     clearInterval(i);
@@ -78,14 +79,15 @@
                 count++;
                 document.getElementById('p').value = count / maxcount;
             });*/
-            function createtester(num) {
+            function createtester(num=1){
                 let a = [],
                     b = [];
                 for (let i = 0; i < num; i++) {
                     b[i] = 0;
                     a[i] = setInterval(() => {
                         if (!(b[i] + num < maxcount)) {
-                            clearInterval(a[i])
+                            clearInterval(a[i]);
+                            document.getElementById('run').disabled=false;
                         }
                         t();
                         b[i]++;
@@ -95,7 +97,7 @@
                     })
                 }
             }
-            createtester(1);
+            createtester();
         }
         function averagingrun() {
             if (times.length == maxcount) {
