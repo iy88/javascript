@@ -10,5 +10,5 @@ function averaging(array){
 
 onmessage = (event) => {
     postMessage(averaging(event.data));
-    close();
+    self.close();
 }
