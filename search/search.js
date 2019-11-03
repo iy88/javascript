@@ -134,7 +134,7 @@ Array.prototype.DeleteDuplication = function () {
     return arr
 }
 
-function search(sd, se) {  //sd: searchdatas  se: searchelement
+function search() {  //sd: searchdatas  se: searchelement
     let d = arguments[0], //d: searchdatas
         s = arguments[1], //s: searchelement 
         first = -1,      //first: first find index
