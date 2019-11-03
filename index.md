@@ -86,3 +86,53 @@ _If you want to learn more about sorting algorithms, you can visit =>_[sort algo
 |shell             |   O(nlog^2(n))  |     O(nlog^2(n))      |  O(nlog^2(n))  |
 
 _**Time complexity by 《Learning-JavaScript-Data-Structures-and-Algorithms-Third-Edition》 Loiane Groner**_
+
+# search library
+
+**This is an simple javascript search library I made by myself.**
+
+**It can quickly search all the corresponding contents in the string or array indexed by one or more characters.**
+
+# how to use:
+
+**If you have an array or string variable such as str1 array1 You can call**
+
+**search function And pass in the parameter (array or string, string to search)**
+
+**such as search(str1,"afdj"),search(array1,,"asfdfl")**
+
+**Then you can declare a variable to receive the result**
+
+**The results are similar to these !**
+
+```js
+{
+  first: 0, //{1}
+  last: 4,  //{2}
+  lcsindexs: [ 0, 1, 2, 3, 4 ], //{3}
+  best: [0], //{4}
+  msindexs: [ 2, 0, 1, 4, 3 ] //{5}
+}
+```
+
+**Let's take a look at this:**
+
+**In line {1}, the first attribute is used to get the first search result. If there is no result, undefined will be returned.**
+
+**In line {2}, the last attribute is used to get the last search result. If there is no result, undefined will be returned.**
+
+**In line {3}, the lcsindexs attribute is used to get all the approximate search results. If there is no result, it will return [].** 
+
+**In line {3}, _(You can quickly export all element indexes containing search strings)_.**
+
+**In line {4}, the best attribute is used to get the best result (exactly the same), if it does not return [].**
+
+**In the last row, the msindexs attribute returns the best to worst result based on all found elements, if it does not return [].**
+
+**_Return all index values!!!_**
+
+**If you want to know its source code, you can check the uncompressed version *_[search.js](search/search.js)_*.**
+
+**This is a compressed version _[search.min.js](search/search.min.js)_.**
+
+_**You can use it directly through the link(https://iy88.github.io/javascript/search/search.min.js) or download the source code**_
