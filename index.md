@@ -93,7 +93,7 @@ _**Time complexity by 《Learning-JavaScript-Data-Structures-and-Algorithms-Thir
 
 **It can quickly search all the corresponding contents in the string or array indexed by one or more characters.**
 
-# how to use:
+## how to use:
 
 **If you have an array or string variable such as str1 array1 You can call**
 
@@ -131,7 +131,7 @@ _**Time complexity by 《Learning-JavaScript-Data-Structures-and-Algorithms-Thir
 
 **_Return all index values!!!_**
 
-**If you want to know its source code, you can check the uncompressed version *_[search.js](search/search.js)_*.**
+**If you want to know its source code, you can check the uncompressed version _[search.js](search/search.js)_.**
 
 **This is a compressed version _[search.min.js](search/search.min.js)_.**
 
