@@ -79,43 +79,43 @@ function countingSort(array) {
     }
 }
 
-function bubbleSort(array){
+function bubbleSort(array) {
     //console.time('bubbleSort run time');
     let arr = array.slice(0);
-    if(arr){
-        for(let count = 0;count < arr.length-1;count++){
+    if (arr) {
+        for (let count = 0; count < arr.length - 1; count++) {
             let over = true;
-            for(let i = 0;i < arr.length;i++){
-                if(arr[i] > arr[i+1]){
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] > arr[i + 1]) {
                     let temp = arr[i];
-                    arr[i] = arr[i+1];
-                    arr[i+1] = temp;
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
                     over = false;
                 }
             }
-            if(over){
+            if (over) {
                 break;
             }
         }
-    }else{
+    } else {
         console.error(`bubbleSort: unkown array '${arr}'`);
     }
     //console.timeEnd('bubbleSort run time');
     return arr
 }
 
-function ms(word1,word2){
+function ms(word1, word2) {
     let str1 = word1;
     let str2 = word2;
     let length = 0;
     let fi = str1.indexOf(str2[0]);
-    if(fi != -1){
+    if (fi != -1) {
         length = 1;
-        for(let i = fi+1; i < str2.length; i++){
-            for(let j = fi + 1; j<str1.length; j++){
-                if(str1[j] === str2[i]){
+        for (let i = fi + 1; i < str2.length; i++) {
+            for (let j = fi + 1; j < str1.length; j++) {
+                if (str1[j] === str2[i]) {
                     length++
-                }else{
+                } else {
                     break;
                 }
             }
@@ -134,9 +134,11 @@ Array.prototype.DeleteDuplication = function () {
     return arr
 }
 
-function search() {  //sd: searchdatas  se: searchelement
-    let d = arguments[0], //d: searchdatas
-        s = arguments[1], //s: searchelement 
+function analysis(arr, r) { for (let i = 0; i < arr.length; i++)Array.isArray(arr[i]) ? analysis(arr[i], r) : r[r.length] = arr[i] }
+
+function search() {  //sd: search-datas  se: search-element
+    let d = arguments[0], //d: search-datas
+        s = arguments[1], //s: search-element 
         first = -1,      //first: first find index
         last = -1,       //lase: lase find index
         best = [],       //best: the best find element's index
@@ -172,7 +174,7 @@ function search() {  //sd: searchdatas  se: searchelement
             weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
         }
     }
-    
+
     bestindexs = weightsortresult.DeleteDuplication().reverse();
     indexs = sortresult.DeleteDuplication(); //deleteduplication
     first = sortresult[0];
@@ -184,4 +186,16 @@ function search() {  //sd: searchdatas  se: searchelement
         best: best,
         msindexs: bestindexs,
     }
+}
+
+function Multidimensionalarraysearch(){
+    let d = arguments[0],
+        q = arguments[1],
+        r = [];
+    analysis(d,r);    
+    return{
+        result : search(r,q),
+        analysisarray : r
+    } 
+    
 }
