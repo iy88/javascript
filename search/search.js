@@ -179,9 +179,10 @@ function search() {  //sd: search-datas  se: search-element
     indexs = sortresult.DeleteDuplication(); //deleteduplication
     first = sortresult[0];
     last = sortresult[sortresult.length - 1];
+    best = best || -1
     return {
-        first: first,
-        last: last,
+        first: first === undefined ? -1 : first,
+        last: last === undefined ? -1 : last,
         lcsindexs: indexs,              //return searchresult
         best: best,
         msindexs: bestindexs,
@@ -199,3 +200,4 @@ function Multidimensionalarraysearch(){
     } 
     
 }
+console.log(search(["jadfkajdfkljaskdfjakf","asdkjfakidsfjaksjfd"],";"));
