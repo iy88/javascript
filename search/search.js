@@ -198,5 +198,4 @@ function Multidimensionalarraysearch(){
         result : search(r,q),
         analysisarray : r
     } 
-    
 }
