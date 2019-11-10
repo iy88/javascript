@@ -200,4 +200,3 @@ function Multidimensionalarraysearch(){
     } 
     
 }
-console.log(search(["jadfkajdfkljaskdfjakf","asdkjfakidsfjaksjfd"],";"));
