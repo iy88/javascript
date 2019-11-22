@@ -157,6 +157,7 @@ function search() {  //sd: search-datas  se: search-element
     }
     for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
         lcsresult[lcsresult.length] = lcs(d[searchdataindex], s);
+        
     }
     lcssort = countingSort(lcsresult);  //sort lcsresults
 
