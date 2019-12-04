@@ -136,7 +136,7 @@ Array.prototype.DeleteDuplication = function () {
 
 function analysis(arr, r) { for (let i = 0; i < arr.length; i++)Array.isArray(arr[i]) ? analysis(arr[i], r) : r[r.length] = arr[i] }
 
-function search() {  //sd: search-datas  se: search-element
+function search() {
     let d = arguments[0], //d: search-datas
         s = arguments[1], //s: search-element 
         first = -1,      //first: first find index
