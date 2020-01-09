@@ -110,9 +110,9 @@ function defaultlcs(wordX, wordY) {
         let length = [];
         let ap = wordX.searchelement(wordY[0], true);
         for (let k = 0; k < ap.length; k++) {
-            for (let i = ap[k]; i < wordY.length; i++) {
+            for (let i = ap[k]; i < wordX.length; i++) {
                 for (let j = ap[k]; j < wordY.length; j++) {
-                    if (wordX[j] === wordY[i]) {
+                    if (wordX[i] === wordY[j]) {
                         length[k] != undefined ? length[k]++ : length[k] = 0;
                     } else {
                         break;
@@ -120,73 +120,22 @@ function defaultlcs(wordX, wordY) {
                 }
             }
         }
-        return Math.max(...length);
-
+        let length2 = [];
+        ap = wordX.searchelement(wordY[0], true);
+        for (let k = 0; k < ap.length; k++) {
+            for (let i = ap[k]; i < wordY.length; i++) {
+                for (let j = ap[k]; j < wordX.length; j++) {
+                    if (wordX[j] === wordY[i]) {
+                        length2[k] != undefined ? length2[k]++ : length2[k] = 0;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return ((Math.max(...length) + Math.min(...length)) / 2 + (Math.max(...length2) + Math.min(...length2)) / 2) / 2;
     } else {
         return 0;
-    }
-}
-
-this.SearchMain = () => {
-    this.e = {
-        p : (data, query) => {
-            let best = [];
-            for (let ap = 0; ap < data.length; ap++) {
-                if (data[ap] === s) {
-                    best.push(ap);
-                }
-            }
-            let elements = [];
-            for (let i = 0; i < best.length; i++) {
-                elements.push(best[i]);
-            }
-            return elements;
-        },
-        a : (data, query, sortFn, lcsFn) => {
-            let weightresult = [];
-            for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
-                weightresult[weightresult.length] = ms(d[searchdataindex], s) / d[searchdataindex].length;
-            }
-            let weightsort = sortFn(weightresult);  //sort msresults
-            let weightsortresult = [];
-            for (let i = 0; i < weightsort.length; i++) {
-                if (weightsort[i] != 0) {                //if msresult = 0 next
-                    weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
-                }
-            }
-            let bestindexs = weightsortresult.DeleteDuplication().reverse();
-            let elements = [];
-            for (let i = 0; i < bestindexs.length; i++) {
-                elements.push(best[i]);
-            }
-            return elements;
-        },
-    }
-    this.i = {
-        p : (data, query) => {
-            let best = [];
-            for (let ap = 0; ap < data.length; ap++) {
-                if (data[ap] === s) {
-                    best.push(ap);
-                }
-            }
-            return best
-        },
-        a : (data, query, sortFn, lcsFn) => {
-            let weightresult = [];
-            for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
-                weightresult[weightresult.length] = ms(d[searchdataindex], s) / d[searchdataindex].length;
-            }
-            let weightsort = sortFn(weightresult);  //sort msresults
-            let weightsortresult = [];
-            for (let i = 0; i < weightsort.length; i++) {
-                if (weightsort[i] != 0) {                //if msresult = 0 next
-                    weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
-                }
-            }
-            let bestindexs = weightsortresult.DeleteDuplication().reverse();
-            return bestindexs
-        },
     }
 }
 
@@ -293,7 +242,6 @@ function Search() {
         }
         let weightsort = sortFn(weightresult);  //sort msresults
         let weightsortresult = [];
-        console.log(weightsort);
         for (let i = 0; i < weightsort.length; i++) {
             if (weightsort[i] != 0) {                //if msresult = 0 next
                 weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
