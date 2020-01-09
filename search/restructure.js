@@ -145,6 +145,7 @@ function Search() {
     this.__lcsFn__ = null; //search's lcs function
     this.__rerurnType__ = null; //search's return type: "e" --- elements || "i" ---  indexs
     this.__isSaveConfig__ = null;//search's save config : true or false
+    this.clearConfig = () => {this.config = null;this.__isSaveConfig__ = null};
     this.doConfig = issave => {
         //search's config function
         if (this.config === null) {
@@ -195,13 +196,13 @@ function Search() {
     this.ep = (data, query) => {
             let best = [];
             for (let ap = 0; ap < data.length; ap++) {
-                if (data[ap] === s) {
+                if (data[ap] === query) {
                     best.push(ap);
                 }
             }
             let elements = [];
             for (let i = 0; i < best.length; i++) {
-                elements.push(best[i]);
+                elements.push(data[best[i]]);
             }
             return elements;
     }
@@ -220,7 +221,7 @@ function Search() {
             let bestindexs = weightsortresult.DeleteDuplication().reverse();
             let elements = [];
             for (let i = 0; i < bestindexs.length; i++) {
-                elements.push(best[i]);
+                elements.push(data[bestindexs[i]]);
             }
             return elements;
     }
@@ -259,7 +260,8 @@ function Search() {
                 if (typeof query === "string") {
                     if (this.__rerurnType__ === "e") {
                         if (!this.__isSaveConfig__) {
-                            this.config = null;
+                            console.log('clear');
+                            this.clearConfig();
                         }
                         return {
                             p: this.ep(data, query),
@@ -267,7 +269,8 @@ function Search() {
                         };
                     } else {
                         if (!this.__isSaveConfig__) {
-                            this.config = null;
+                            console.log('clear');
+                            this.clearConfig();
                         }
                         return {
                             p: this.ip(data, query),
@@ -281,5 +284,9 @@ function Search() {
 }
 
 let s = new Search();
-s.doDefultConfig();
-console.log(s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
+s.config = {
+    returnType:'i',
+}
+s.doConfig(true);
+console.log(s.__isSaveConfig__,s.__rerurnType__,s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
+console.log(s.__isSaveConfig__,s.__rerurnType__,s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
