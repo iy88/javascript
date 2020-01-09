@@ -201,7 +201,6 @@ function Multidimensionalarraysearch(){
 
 
 function ms(wordX, wordY) {
-    
     let found = wordX.indexOf(wordY[0]) !== -1 ? true : false;
     if(found){
         let length = [];
