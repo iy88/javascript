@@ -17,7 +17,25 @@ Array.prototype.searchelement = function (element, auto, begin_index, end_index)
     }
     return indexs
 }
-
+String.prototype.searchelement = function (element, auto, begin_index, end_index) {
+    let indexs = [];
+    if (auto === true) {
+        for (let index = 0; index < this.length; index++) {
+            if (this[index] === element) {
+                indexs[indexs.length] = index;
+            }
+        }
+    } else if (auto === false) {
+        for (let index = begin_index; index < end_index; index++) {
+            if (this[index] === element) {
+                indexs[indexs.length] = index;
+            }
+        }
+    } else {
+        console.error("search element error");
+    }
+    return indexs
+}
 let lcs = (wordX, wordY) => {
     const m = wordX.length;
     const n = wordY.length;
@@ -104,26 +122,6 @@ function bubbleSort(array) {
     return arr
 }
 
-function ms(word1, word2) {
-    let str1 = word1;
-    let str2 = word2;
-    let length = 0;
-    let fi = str1.indexOf(str2[0]);
-    if (fi != -1) {
-        length = 1;
-        for (let i = fi + 1; i < str2.length; i++) {
-            for (let j = fi + 1; j < str1.length; j++) {
-                if (str1[j] === str2[i]) {
-                    length++
-                } else {
-                    break;
-                }
-            }
-        }
-    }
-    return length
-}
-
 Array.prototype.DeleteDuplication = function () {
     let arr = [];
     for (var i = 0; i < this.length; i++) {
@@ -156,7 +154,7 @@ function search() {
         }
     }
     for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
-        lcsresult[lcsresult.length] = lcs(d[searchdataindex], s);
+        lcsresult[lcsresult.length] = lcs(d[searchdataindex], s) / d[searchdataindex].length;
         
     }
     lcssort = countingSort(lcsresult);  //sort lcsresults
@@ -167,7 +165,7 @@ function search() {
         }
     }
     for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
-        weightresult[weightresult.length] = ms(d[searchdataindex], s) / d[searchdataindex].length
+        weightresult[weightresult.length] = ms(d[searchdataindex], s) / d[searchdataindex].length;
     }
     weightsort = bubbleSort(weightresult);  //sort msresults
     for (let i = 0; i < weightsort.length; i++) {
@@ -199,4 +197,29 @@ function Multidimensionalarraysearch(){
         result : search(r,q),
         analysisarray : r
     } 
+}
+
+
+function ms(wordX, wordY) {
+    
+    let found = wordX.indexOf(wordY[0]) !== -1 ? true : false;
+    if(found){
+        let length = [];
+        let ap = wordX.searchelement(wordY[0],true);
+        for(let k = 0; k < ap.length; k++){
+            for(let i = ap[k]; i < wordY.length; i++){
+                for(let j = ap[k]; j < wordY.length; j++){
+                    if(wordX[j] === wordY[i]){
+                        length[k] != undefined ? length[k]++ : length[k] = 0;
+                    }else{
+                        break;
+                    }
+                }
+            }
+        }
+        return (Math.min(...length)+Math.max(...length)) / 2;
+        
+    }else{
+        return 0;
+    }
 }
