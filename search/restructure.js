@@ -282,3 +282,11 @@ function Search() {
         }
     };
 }
+
+let s = new Search();
+s.config = {
+    returnType:'i',
+}
+s.doConfig(true);
+console.log(s.__isSaveConfig__,s.__rerurnType__,s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
+console.log(s.__isSaveConfig__,s.__rerurnType__,s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
