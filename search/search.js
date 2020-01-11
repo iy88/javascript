@@ -1,3 +1,19 @@
+/*
+project: javascript
+data: 2020.01.09 19:16
+user: ysf
+editor: WebStorm
+*/
+Array.prototype.DeleteDuplication = function () {
+    let arr = [];
+    for (var i = 0; i < this.length; i++) {
+        if (arr.indexOf(this[i]) === -1) {
+            arr.push(this[i]);
+        }
+    }
+    return arr
+}
+
 Array.prototype.searchelement = function (element, auto, begin_index, end_index) {
     let indexs = [];
     if (auto === true) {
@@ -17,6 +33,7 @@ Array.prototype.searchelement = function (element, auto, begin_index, end_index)
     }
     return indexs
 }
+
 String.prototype.searchelement = function (element, auto, begin_index, end_index) {
     let indexs = [];
     if (auto === true) {
@@ -36,189 +53,236 @@ String.prototype.searchelement = function (element, auto, begin_index, end_index
     }
     return indexs
 }
-let lcs = (wordX, wordY) => {
-    const m = wordX.length;
-    const n = wordY.length;
-    const l = [];
-    for (let i = 0; i <= m; i++) {
-        l[i] = [];
-        for (let j = 0; j <= n; j++) {
-            l[i][j] = 0;
-        }
-    }
-    for (let i = 0; i <= m; i++) {
-        for (let j = 0; j <= n; j++) {
-            if (i === 0 || j === 0) {
-                l[i][j] = 0;
-            } else if (wordX[i - 1] === wordY[j - 1]) {
-                l[i][j] = l[i - 1][j - 1] + 1;
-            } else {
-                const a = l[i - 1][j];
-                const b = l[i][j - 1];
-                l[i][j] = a > b ? a : b;
-            }
-        }
-    }
-    return l[m][n];
-}
 
-function countingSort(array) {
-    let arr = array.slice(0);
-    if (arr) {
-        if (arr.length < 2) {
-            return arr
-        } else {
-            function findMaxValue(array) {
-                let max = array[0];
-                for (let i = 1; i < array.length; i++) {
-                    if (array[i] > max) {
-                        max = array[i];
-                    }
-                }
-                return max
-            }
-            const maxValue = findMaxValue(arr);
-            const counts = new Array(maxValue + 1);
-            arr.forEach(element => {
-                if (!counts[element]) {
-                    counts[element] = 0;
-                }
-                counts[element]++;
-            })
-            let sortedIndex = 0;
-            counts.forEach((count, i) => {
-                while (count > 0) {
-                    arr[sortedIndex++] = i;
-                    count--;
-                }
-            })
-            return arr
+function defaultSortFn(array) {
+    var result = array.slice(0);
+    if (result) {
+        function swap(array, i, j) {
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
-    }
-}
-
-function bubbleSort(array) {
-    //console.time('bubbleSort run time');
-    let arr = array.slice(0);
-    if (arr) {
-        for (let count = 0; count < arr.length - 1; count++) {
-            let over = true;
-            for (let i = 0; i < arr.length; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    let temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
-                    over = false;
+        function maxHeapify(array, index, heapSize) {
+            var iMax, iLeft, iRight;
+            while (true) {
+                iMax = index;
+                iLeft = 2 * index + 1;
+                iRight = 2 * (index + 1);
+                if (iLeft < heapSize && array[index] < array[iLeft]) {
+                    iMax = iLeft;
+                }
+                if (iRight < heapSize && array[iMax] < array[iRight]) {
+                    iMax = iRight;
+                }
+                if (iMax != index) {
+                    swap(array, iMax, index);
+                    index = iMax;
+                } else {
+                    break;
                 }
             }
-            if (over) {
-                break;
+        }
+        function buildMaxHeap(arr) {
+            let array = arr.slice(0);
+            var i,
+                iParent = Math.floor(array.length / 2) - 1;
+            for (i = iParent; i >= 0; i--) {
+                maxHeapify(array, i, array.length);
             }
+        }
+        function sort(array) {
+            buildMaxHeap(array);
+            for (var i = array.length - 1; i > 0; i--) {
+                swap(array, 0, i);
+                maxHeapify(array, 0, i);
+            }
+            return array;
         }
     } else {
-        console.error(`bubbleSort: unkown array '${arr}'`);
+        console.error(`heapSort: unkown array ${result}`);
     }
-    //console.timeEnd('bubbleSort run time');
-    return arr
+    return sort(result);
 }
 
-Array.prototype.DeleteDuplication = function () {
-    let arr = [];
-    for (var i = 0; i < this.length; i++) {
-        if (arr.indexOf(this[i]) === -1) {
-            arr.push(this[i]);
-        }
-    }
-    return arr
-}
-
-function analysis(arr, r) { for (let i = 0; i < arr.length; i++)Array.isArray(arr[i]) ? analysis(arr[i], r) : r[r.length] = arr[i] }
-
-function search() {
-    let d = arguments[0], //d: search-datas
-        s = arguments[1], //s: search-element 
-        first = -1,      //first: first find index
-        last = -1,       //lase: lase find index
-        best = [],       //best: the best find element's index
-        indexs = [],    //index: all find indexs
-        lcsresult = [], //all element's lcs result  
-        lcssort,    //lcsresult sort 
-        sortresult = [], //sort socre result  
-        bestindexs = [], //best round search result
-        weightresult = [],
-        weightsort = [],            //weight%
-        weightsortresult = [];
-    for (let ap = 0; ap < d.length; ap++) {//ap: searcharray's index  
-        if (d[ap] === s) {                  // if d's element ap = searchelement push now ap to best 
-            best[best.length] = ap;
-        }
-    }
-    for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
-        lcsresult[lcsresult.length] = lcs(d[searchdataindex], s) / d[searchdataindex].length;
-        
-    }
-    lcssort = countingSort(lcsresult);  //sort lcsresults
-
-    for (let i = 0; i < lcssort.length; i++) {
-        if (lcssort[i] != 0) {                //if lcsresult = 0 next
-            sortresult.push(...lcsresult.searchelement(lcssort[i], true)); //push search result
-        }
-    }
-    for (let searchdataindex = 0; searchdataindex < d.length; searchdataindex++) {//ap: searcharray's index 
-        weightresult[weightresult.length] = ms(d[searchdataindex], s) / d[searchdataindex].length;
-    }
-    weightsort = bubbleSort(weightresult);  //sort msresults
-    for (let i = 0; i < weightsort.length; i++) {
-        if (weightsort[i] != 0) {                //if msresult = 0 next
-            weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
-        }
-    }
-
-    bestindexs = weightsortresult.DeleteDuplication().reverse();
-    indexs = sortresult.DeleteDuplication(); //deleteduplication
-    first = sortresult[0];
-    last = sortresult[sortresult.length - 1];
-    best = best || -1
-    return {
-        first: first === undefined ? -1 : first,
-        last: last === undefined ? -1 : last,
-        lcsindexs: indexs,              //return searchresult
-        best: best,
-        msindexs: bestindexs,
-    }
-}
-
-function Multidimensionalarraysearch(){
-    let d = arguments[0],
-        q = arguments[1],
-        r = [];
-    analysis(d,r);    
-    return{
-        result : search(r,q),
-        analysisarray : r
-    } 
-}
-
-
-function ms(wordX, wordY) {
+function defaultlcs(wordX, wordY) {
     let found = wordX.indexOf(wordY[0]) !== -1 ? true : false;
-    if(found){
+    if (found) {
         let length = [];
-        let ap = wordX.searchelement(wordY[0],true);
-        for(let k = 0; k < ap.length; k++){
-            for(let i = ap[k]; i < wordY.length; i++){
-                for(let j = ap[k]; j < wordY.length; j++){
-                    if(wordX[j] === wordY[i]){
+        let ap = wordX.searchelement(wordY[0], true);
+        for (let k = 0; k < ap.length; k++) {
+            for (let i = ap[k]; i < wordX.length; i++) {
+                for (let j = ap[k]; j < wordY.length; j++) {
+                    if (wordX[i] === wordY[j]) {
                         length[k] != undefined ? length[k]++ : length[k] = 0;
-                    }else{
+                    } else {
                         break;
                     }
                 }
             }
         }
-        return (Math.min(...length)+Math.max(...length)) / 2;
-        
-    }else{
+        let length2 = [];
+        ap = wordX.searchelement(wordY[0], true);
+        for (let k = 0; k < ap.length; k++) {
+            for (let i = ap[k]; i < wordY.length; i++) {
+                for (let j = ap[k]; j < wordX.length; j++) {
+                    if (wordX[j] === wordY[i]) {
+                        length2[k] != undefined ? length2[k]++ : length2[k] = 0;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return Math.max(Math.max(...length),Math.max(...length2));
+    } else {
         return 0;
     }
 }
+
+function Search() {
+    this.config = null; //search config object
+    this.__sortFn__ = null; //search's sort function
+    this.__lcsFn__ = null; //search's lcs function
+    this.__rerurnType__ = null; //search's return type: "e" --- elements || "i" ---  indexs
+    this.__isSaveConfig__ = null;//search's save config : true or false
+    this.clearConfig = () => {this.config = null;this.__isSaveConfig__ = null};
+    this.doConfig = issave => {
+        //search's config function
+        if (this.config === null) {
+            throw new Error("please config first!");
+        } else {
+            if (this.config.sort !== undefined) {
+                let arr = [2.23, 1.4];
+                if (this.config.sort(arr) !== [1.4, 2.23] || arr !== [2.23, 1.4]) {        //check the sort function if hava config
+                    delete arr;
+                    throw new Error("please use the correct sorting algorithm!");
+                } else {
+                    this.__sortFn__ = this.config.selfFn.sort;
+                }
+            } else {
+                this.__sortFn__ = defaultSortFn;
+            }
+
+            if (this.config.lcs !== undefined) {
+                if (typeof this.config.lcs("abasdjfabadagaga", "ab") !== "number") {     //check the lcs function if hava config
+
+                    throw new Error("lcs function must return a number!");
+                } else {
+                    this.__lcsFn__ = this.config.selfFn.lcs;
+                }
+            } else {
+                this.__lcsFn__ = defaultlcs;
+            }
+
+            if (this.config.returnType === "e") {
+                this.__rerurnType__ = this.config.returnType;
+            } else {
+                this.__rerurnType__ = "i";
+            }
+            if (issave) {
+                this.__isSaveConfig__ = true;
+            } else {
+                this.__isSaveConfig__ = false;
+            }
+        }
+        console.log("search config successfully!");
+    };
+    this.doDefultConfig = () => {
+        this.config = {
+    
+        };
+        this.doConfig();
+    }
+    this.ep = (data, query) => {
+            let best = [];
+            for (let ap = 0; ap < data.length; ap++) {
+                if (data[ap] === query) {
+                    best.push(ap);
+                }
+            }
+            let elements = [];
+            for (let i = 0; i < best.length; i++) {
+                elements.push(data[best[i]]);
+            }
+            return elements;
+    }
+    this.ea = (data, query, sortFn, lcsFn) => {
+            let weightresult = [];
+            for (let searchdataindex = 0; searchdataindex < data.length; searchdataindex++) {//ap: searcharray's index 
+                weightresult[weightresult.length] = lcsFn(data[searchdataindex], query) / data[searchdataindex].length;
+            }
+            let weightsort = sortFn(weightresult);  //sort msresults
+            let weightsortresult = [];
+            for (let i = 0; i < weightsort.length; i++) {
+                if (weightsort[i] != 0) {                //if msresult = 0 next
+                    weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
+                }
+            }
+            let bestindexs = weightsortresult.DeleteDuplication().reverse();
+            let elements = [];
+            for (let i = 0; i < bestindexs.length; i++) {
+                elements.push(data[bestindexs[i]]);
+            }
+            return elements;
+    }
+    
+    this.ip = (data, query) => {
+        let best = [];
+        for (let ap = 0; ap < data.length; ap++) {
+            if (data[ap] === query) {
+                best.push(ap);
+            }
+        }
+        return best
+    }
+
+    this.ia = (data, query, sortFn, lcsFn) => {
+        let weightresult = [];
+        for (let searchdataindex = 0; searchdataindex < data.length; searchdataindex++) {//ap: searcharray's index 
+            weightresult[weightresult.length] = lcsFn(data[searchdataindex], query) / data[searchdataindex].length;
+        }
+        let weightsort = sortFn(weightresult);  //sort msresults
+        let weightsortresult = [];
+        for (let i = 0; i < weightsort.length; i++) {
+            if (weightsort[i] != 0) {                //if msresult = 0 next
+                weightsortresult.push(...weightresult.searchelement(weightsort[i], true)); //push search result
+            }
+        }
+        let bestindexs = weightsortresult.DeleteDuplication().reverse();
+        return bestindexs
+    }
+
+    this.doSearch = (data, query) => {
+        if (this.config === null) { // check config
+            throw new Error("please use the 'doConfig' or 'doDefaultConfig to config the search function first!");
+        } else {
+            if (Array.isArray(data)) {
+                if (typeof query === "string") {
+                    if (this.__rerurnType__ === "e") {
+                        if (!this.__isSaveConfig__) {
+                            this.clearConfig();
+                        }
+                        return {
+                            p: this.ep(data, query),
+                            a: this.ea(data, query, this.__sortFn__, this.__lcsFn__)
+                        };
+                    } else {
+                        if (!this.__isSaveConfig__) {
+                            this.clearConfig();
+                        }
+                        return {
+                            p: this.ip(data, query),
+                            a: this.ia(data, query, this.__sortFn__, this.__lcsFn__)
+                        };
+                    }
+                }
+            }
+        }
+    };
+}
+let s = new Search();
+s.config={
+    returnType : 'e'
+}
+s.doConfig();
+console.log(s.doSearch(["模拟chrome的dino","贪吃蛇","2048","俄罗斯方块","弹球(打砖块)","赛车","3D赛车","svg赛车","见缝插针","跑酷","超高难度跑酷","飞机大战","小行星战斗","飞行的小球","球球大作战（模拟）","拯救兔子","spacePi","井字棋","破坏方块","旋转消除","塔防","低跑"],'赛车'));
