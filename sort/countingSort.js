@@ -1,7 +1,7 @@
 function countingSort(array){
     let arr = array.slice(0);
     if(arr){
-      console.time('countingSort run time');  
+      //console.time('countingSort run time');
         if(arr.length < 2){
             return arr
         }else{
@@ -29,10 +29,12 @@ function countingSort(array){
                     count--;
                 }
             })
-            console.timeEnd('countingSort run time');
+            //console.timeEnd('countingSort run time');
             return arr
         }
     }else{
         console.error(`coutingSort unkown array '${arr}'`);
     }
 }
+
+module.exports = countingSort;

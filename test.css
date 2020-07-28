@@ -1,3 +1,15 @@
-body{
-    bac
+html{
+    width: 100vw;
+    height: 100vh;
+    background:linear-gradient(135deg, #00ffad, rgba(0, 94, 255, 0.73));
+/**background: radial-gradient(#00ffad, rgba(0, 94, 255, 0.73));**/
+
+}
+
+#ball{
+    width: 200px;
+    height: 100px;
+    border-radius: 200px 200px 200px 200px;
+    background:linear-gradient(135deg, #08ff00, rgba(0, 94, 255, 0.73));
+    /**background: radial-gradient(#00ffad, rgba(0, 94, 255, 0.73));**/
 }

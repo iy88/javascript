@@ -133,6 +133,7 @@ function defaultlcs(wordX, wordY) {
                 }
             }
         }
+        console.log(length,length2);
         return ((Math.max(...length) + Math.min(...length)) / 2 + (Math.max(...length2) + Math.min(...length2)) / 2) / 2;
     } else {
         return 0;
@@ -154,7 +155,6 @@ function Search() {
             if (this.config.sort !== undefined) {
                 let arr = [2.23, 1.4];
                 if (this.config.sort(arr) !== [1.4, 2.23] || arr !== [2.23, 1.4]) {        //check the sort function if hava config
-                    delete arr;
                     throw new Error("please use the correct sorting algorithm!");
                 } else {
                     this.__sortFn__ = this.config.selfFn.sort;
@@ -285,8 +285,7 @@ function Search() {
 
 let s = new Search();
 s.config = {
-    returnType:'i',
+    returnType:'e',
 }
 s.doConfig(true);
-console.log(s.__isSaveConfig__,s.__rerurnType__,s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
-console.log(s.__isSaveConfig__,s.__rerurnType__,s.doSearch(['asdf','asdfa','asdfa','gdgsd','hswr','qwe'],'asdf'));
+console.log(s.doSearch(['ysf','iy88','y98','y88'],'y88'));
